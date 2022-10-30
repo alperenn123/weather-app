@@ -15,7 +15,7 @@ const Weather = () => {
   const createReadableDateFromDt = (dt) => {
     const ms = dt * 1000;
     const dateInstance = new Date(ms);
-    const day = dateInstance.toLocaleString("en-US", { day: "numeric" });
+    const day = dateInstance.toLocaleString("en-US", { weekday: "long" });
     const monthName = dateInstance.toLocaleString("en-US", { month: "long" });
     const monthNumber = dateInstance.toLocaleString("en-US", {
       day: "numeric",
@@ -39,7 +39,7 @@ const Weather = () => {
   const parseStats = (weatherData) => {
     const sunset = createHourFromDt(weatherData.sys.sunset);
     const sunrise = createHourFromDt(weatherData.sys.sunrise);
-    const windSpeed = weatherData.wind.speed;
+    const windSpeed = weatherData.wind.speed + " km/h";
     const humidity = weatherData.main.humidity + "%";
     const minimumTemprature = weatherData.main.temp_min + "\u00b0";
     const maximumTemprature = weatherData.main.temp_max + "\u00B0";
@@ -84,27 +84,25 @@ const Weather = () => {
   };
 
   return (
-    <>
+    <main className="main-container">
       <SearchBar onSearchChange={onSearchDataChanged} />
       {shouldRender && (
         <>
-          <div className="main-weather-container">
-            <LocationAndDate
-              location={currentWeather.name + ", " + currentWeather.sys.country}
-              date={date}
-            />
-            <CurrentTemprature
-              temprature={currentWeather.main.temp}
-              summary={currentWeather.weather[0].description}
-              iconIndex={currentWeather.weather[0].icon}
-            />
-            <CurrentStats currentStats={parseStats(currentWeather)} />
-          </div>
+          <LocationAndDate
+            location={currentWeather.name + ", " + currentWeather.sys.country}
+            date={date}
+          />
+          <CurrentTemprature
+            temprature={currentWeather.main.temp}
+            summary={currentWeather.weather[0].description}
+            iconIndex={currentWeather.weather[0].icon}
+          />
+          <CurrentStats currentStats={parseStats(currentWeather)} />
           <WeatherByHour forecastData={currentForecast} />
           <NextFiveDays forecastData={currentForecast} />
         </>
       )}
-    </>
+    </main>
   );
 };
 

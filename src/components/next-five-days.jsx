@@ -1,13 +1,3 @@
-const WEEK_DAYS = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
-
 const nextFiveDays = ({ forecastData }) => {
   const fiveDaysWeather = [];
   for (let i = 0; i < forecastData.list.length; i = i + 8) {
@@ -31,33 +21,33 @@ const nextFiveDays = ({ forecastData }) => {
 
   return (
     <div className="next-5-days">
-      <h2 className="heading">Next 5 days</h2>
+      <h2 className="next-5-days__heading">Next 5 days</h2>
 
-      <div className="container">
-        {fiveDaysWeather.map((dayData) => {
+      <div className="next-5-days__container">
+        {fiveDaysWeather.map((dayData, index) => {
           return (
-            <div className="row">
-              <div className="date">
+            <div className="next-5-days__row" key={dayData.day + index}>
+              <div className="next-5-days__date">
                 {dayData.day}
-                <div className="label">{dayData.date}</div>
+                <div className="next-5-days__label">{dayData.date}</div>
               </div>
-              <div className="low">
+              <div className="next-5-days__low">
                 {dayData.low}&deg;
-                <div className="label">Low</div>
+                <div className="next-5-days__label">Low</div>
               </div>
-              <div className="high">
+              <div className="next-5-days__high">
                 {dayData.high}&deg;
-                <div className="label">High</div>
+                <div className="next-5-days__label">High</div>
               </div>
-              <div className="icon">
+              <div className="next-5-days__icon">
                 <img
                   src={`icons/${dayData.iconIndex}.png`}
                   alt={`${dayData.description}`}
                 />
               </div>
-              <div className="wind">
-                {dayData.wind}
-                <div className="label">Wind</div>
+              <div className="next-5-days__wind">
+                {dayData.wind + " km/h"}
+                <div className="next-5-days__label">Wind</div>
               </div>
             </div>
           );

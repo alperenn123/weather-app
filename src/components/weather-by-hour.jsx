@@ -18,18 +18,17 @@ const WeatherByHour = ({ forecastData }) => {
   }
   return (
     <div className="weather-by-hour">
-      <h2 className="heading">Today's weather</h2>
+      <h2 className="weather-by-hour__heading">Today's weather</h2>
 
-      <div className="container">
+      <div className="weather-by-hour__container">
         {todaysData.map((data) => (
-          <div className="item" key={data.hour}>
-            <div className="hour">
+          <div className="weather-by-hour__item" key={data.hour}>
+            <div className="weather-by-hour__hour">
               {data.hour}
-              {Number(data.hour) >= 12 ? ":00 PM" : ":00 AM"}
+              {Number(data.hour) >= 12 ? ":00" : ":00"}
             </div>
             <img
               src={`icons/${data.iconIndex}.png`}
-              className="icon"
               alt={`${data.description}`}
             />
             <div>{data.temprature}&deg;</div>
