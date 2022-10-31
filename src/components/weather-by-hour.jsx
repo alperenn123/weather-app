@@ -18,7 +18,9 @@ const WeatherByHour = ({ forecastData }) => {
   }
   return (
     <div className="weather-by-hour">
-      <h2 className="weather-by-hour__heading">Today's weather</h2>
+      <h2 className="weather-by-hour__heading">
+        Today's weather by three hours
+      </h2>
 
       <div className="weather-by-hour__container">
         {todaysData.map((data) => (
